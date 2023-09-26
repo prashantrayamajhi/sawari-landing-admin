@@ -16,6 +16,9 @@ import CreateTopics from "./components/Topics/Create";
 import News from "./components/News";
 import CreateNews from "./components/News/Create";
 
+import Jobs from "./components/Jobs";
+import CreateJobs from "./components/Jobs/Create";
+
 import Users from "./components/Users";
 
 const RootComponent = () => {
@@ -82,6 +85,25 @@ const router = createBrowserRouter([
       {
         path: "create/:newsId",
         element: <CreateNews />,
+      },
+    ],
+  },
+
+  {
+    path: "/jobs",
+    element: <RootComponent />,
+    children: [
+      {
+        path: "",
+        element: <Jobs />,
+      },
+      {
+        path: "create",
+        element: <CreateJobs />,
+      },
+      {
+        path: "create/:jobId",
+        element: <CreateJobs />,
       },
     ],
   },
