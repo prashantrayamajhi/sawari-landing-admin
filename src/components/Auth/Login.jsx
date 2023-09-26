@@ -35,10 +35,10 @@ const LoginPage = () => {
     try {
       const res = await Axios.post("/auth/login", data);
       console.log(res.data.data);
-      if (res.data.data.role !== "admin") {
-        setErr("Unauthorized");
-        return false;
-      }
+      // if (res.data.data.role !== "admin") {
+      //   setErr("Unauthorized");
+      //   return false;
+      // }
       localStorage.setItem("accessToken", res.data.data.token);
       navigate("/");
     } catch (err) {

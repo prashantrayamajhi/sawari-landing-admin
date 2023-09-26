@@ -75,11 +75,11 @@ const News = () => {
       <ToastContainer />
       {id && isDeleteOpen && (
         <Delete
-          title={"Do you want to delete this news ?"}
+          title={"Do you want to delete this blog ?"}
           fetchData={fetchData}
           route={`/admin/news/${id}`}
           setIsDeleteOpen={setIsDeleteOpen}
-          toastMessage="News deleted successfully"
+          toastMessage="Blog deleted successfully"
           toast={toast}
         />
       )}
@@ -105,7 +105,7 @@ const News = () => {
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">News Details</th>
+              <th scope="col">Blog Details</th>
               <th scope="col">Categories</th>
               <th scope="col">Written Date</th>
               <th scope="col">Actions</th>

@@ -23,6 +23,10 @@ const index = () => {
             Categories
           </NavLink>
 
+          <NavLink className="link-item" to={"/jobs"}>
+            Jobs
+          </NavLink>
+
           <NavLink className="link-item" to={"/users"}>
             Users
           </NavLink>
