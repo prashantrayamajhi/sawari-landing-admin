@@ -7,7 +7,7 @@ import "./../../styles/Form.scss";
 import Delete from "./../Modals/Delete";
 import moment from "moment";
 
-const News = () => {
+const Jobs = () => {
   const [data, setData] = useState([]);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [id, setId] = useState(null);
@@ -27,9 +27,10 @@ const News = () => {
   const fetchData = async () => {
     try {
       const res = await Axios.get(
-        `/admin/news?page=${page}&search=${search}`,
+        `/jobs?page=${page}&search=${search}`,
         config
       );
+      console.log(res.data.data);
       if (!search) {
         data.length > 0
           ? setData((prevData) => [...prevData, ...res.data.data])
@@ -75,19 +76,19 @@ const News = () => {
       <ToastContainer />
       {id && isDeleteOpen && (
         <Delete
-          title={"Do you want to delete this blog ?"}
+          title={"Do you want to delete this job ?"}
           fetchData={fetchData}
-          route={`/admin/news/${id}`}
+          route={`/admin/jobs/${id}`}
           setIsDeleteOpen={setIsDeleteOpen}
-          toastMessage="Blog deleted successfully"
+          toastMessage="Job deleted successfully"
           toast={toast}
         />
       )}
       <div className="heading">
-        <h3>Created Blogs</h3>
+        <h3>Job Listings</h3>
         <div className="heading-create">
-          <Link className="link" to={"/news/create"}>
-            Add Blog
+          <Link className="link" to={"/jobs/create"}>
+            Add a Job
           </Link>
           <input
             type="text"
@@ -104,10 +105,11 @@ const News = () => {
         <table className="table my-5">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Blog Details</th>
-              <th scope="col">Categories</th>
-              <th scope="col">Written Date</th>
+              <th scope="col">SN</th>
+              <th scope="col">Job Title</th>
+              <th scope="col">Job Type</th>
+              <th scope="col">Timing</th>
+              <th scope="col">Job Ends In</th>
               <th scope="col">Actions</th>
             </tr>
           </thead>
@@ -116,46 +118,16 @@ const News = () => {
               return (
                 <tr scope="row" key={item.id} className="">
                   <td>{sn++}</td>
-                  <td className="details-wrapper">
-                    <img src={item.image} alt="" className="thumbnail" />
-                    <div className="details">
-                      <h5>{item.title}</h5>
-                      <p>{item.previewText}</p>
-                    </div>
-                  </td>
 
-                  <td>
-                    <div className="d-flex gap-1">
-                      {item.topics
-                        ?.sort(
-                          (a, b) => a.news_topic.order - b.news_topic.order
-                        )
-                        .map((item) => {
-                          return (
-                            <button
-                              className="btn btn-secondary p-1"
-                              key={item.id}
-                            >
-                              <span className="badge badge-primary">
-                                {item.name}
-                              </span>
-                            </button>
-                          );
-                        })}
-                    </div>
-                  </td>
+                  <td>{item.title}</td>
 
-                  <td>
-                    {moment(item.createdAt).format("MMM Do YYYY h:mm:ss a")}{" "}
-                    <br />
-                    <span className="text-success">
-                      {moment(item.updatedAt).format("MMM Do YYYY h:mm:ss a")}{" "}
-                    </span>
-                  </td>
+                  <td>{item.jobType}</td>
+                  <td>{item.timing}</td>
+                  <td>{moment(item.endsIn).format("MMM Do YYYY h:mm:ss a")}</td>
 
                   <td>
                     <Link
-                      to={`/news/create/${item.id}`}
+                      to={`/jobs/create/${item.id}`}
                       className="btn btn-primary "
                     >
                       Edit
@@ -185,4 +157,4 @@ const News = () => {
   );
 };
 
-export default News;
+export default Jobs;

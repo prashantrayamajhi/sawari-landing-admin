@@ -1,3 +1,5 @@
+@import "./../../styles/colors.scss";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@
   text-align: center;
   font-size: 2rem;
   margin-bottom: 2rem;
-  color: #26b160;
+  color: $primary;
 }
 
 .form-wrapper {
@@ -45,7 +47,7 @@
 }
 
 .loginBtn {
-  background-color: #26b160;
+  background-color: $primary;
   color: #fff;
   font-size: 1.2rem;
   padding: 0.8rem 2rem;
@@ -56,6 +58,6 @@
 }
 
 .loginBtn:hover {
-  background-color: #1e8e48;
+  background-color: $primary-dark;
   color: #fff;
 }
